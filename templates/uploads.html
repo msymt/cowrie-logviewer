@@ -17,6 +17,7 @@
         <table class="table table-condensed table-striped">
         	<thead>
             <th>File name</th>
+            <th>File type</th>
         		<th >File size</th>
         	</thead>
         	<tbody>
@@ -27,6 +28,9 @@
               </td>
         			<td>			
                 {{ upload[1] }}  
+        			</td>
+        			<td>			
+                {{ upload[2] }}  
         			</td>
         		</tr>
         		{% endfor %}

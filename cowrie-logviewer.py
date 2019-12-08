@@ -10,6 +10,7 @@ import geoip2.database
 import sqlite3
 import dateutil.parser
 import pycountry
+import subprocess
 from path import Path
 from flask_compress import Compress
 import os.path
@@ -182,6 +183,12 @@ def get_uploaded_files():
 		tmp = []
 		if(f.size >= min_upload_size and f.name != '.gitignore'):
 			tmp.append(str(f.name))
+			try:
+				result = subprocess.check_output(['file', str(f)])
+				result = result.split(' ', 1)[1].replace('\n', '')
+			except:
+				result = 'ERROR: Load this file'
+			tmp.append(result)
 			tmp.append(f.size)
 			uploaded_files.append(tmp)
 
