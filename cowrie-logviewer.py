@@ -187,7 +187,7 @@ def get_uploaded_files():
 				result = subprocess.check_output(['file', str(f)])
 				result = result.split(' ', 1)[1].replace('\n', '')
 			except:
-				result = 'ERROR: Load this file'
+				result = 'ERROR: Fail to load this file'
 			tmp.append(result)
 			tmp.append(f.size)
 			uploaded_files.append(tmp)
