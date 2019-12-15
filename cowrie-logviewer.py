@@ -4,7 +4,9 @@
 #: Copyright 2017 by Richard 'mindphluxnet' Kaemmerer (richard@richardkaemmerer.de)
 
 from flask import Flask, render_template, send_from_directory
+import os
 import sys
+import time
 import json
 import geoip2.database
 import sqlite3
@@ -12,6 +14,7 @@ import dateutil.parser
 import pycountry
 import subprocess
 from path import Path
+from datetime import datetime
 from flask_compress import Compress
 import os.path
 import time
@@ -189,6 +192,8 @@ def get_uploaded_files():
 			except:
 				result = 'ERROR: Fail to load this file'
 			tmp.append(result)
+			dt = datetime(*time.localtime(os.path.getctime(f))[:6])
+			tmp.append(dt.strftime("%Y-%m-%d"))
 			tmp.append(f.size)
 			uploaded_files.append(tmp)
 
